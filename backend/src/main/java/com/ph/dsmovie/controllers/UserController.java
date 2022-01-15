@@ -9,26 +9,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ph.dsmovie.entities.dto.MovieDTO;
-import com.ph.dsmovie.services.MovieService;
+import com.ph.dsmovie.entities.dto.UserDTO;
+import com.ph.dsmovie.services.UserService;
 
 @RestController
-@RequestMapping(value = "/movies")
-public class MovieController {
+@RequestMapping(value = "/users")
+public class UserController {
 	
 	@Autowired
-	private MovieService service;
+	private UserService service;
 	
 	@GetMapping
-	public ResponseEntity<Page<MovieDTO>> findAll(Pageable pageable){
-		Page<MovieDTO> page = service.findAll(pageable);
+	public ResponseEntity<Page<UserDTO>> findAll(Pageable pageable){
+		Page<UserDTO> page = service.findAll(pageable);
 		return ResponseEntity.ok().body(page);
 	}
 
 	@GetMapping(value = "/{id}")
-	public MovieDTO findById(@PathVariable Long id) {
+	public UserDTO findById(@PathVariable Long id) {
 		try {
-			MovieDTO dto = service.findById(id);
+			UserDTO dto = service.findById(id);
 			return dto;
 		}catch(IllegalArgumentException e) {
 			e.getMessage();
